@@ -1,18 +1,20 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
-
-
         int[] koords = new int[5];
         JTextField smallField = new JTextField("300, 250, 25, 45, 20");
-        JTextField numbers = new JTextField("0, 1, 2, 3, 4, 5, 6, 7, 8, 9");
+        JTextField letters = new JTextField("F, f, E, e, T, t, J, j, I, i");
         JFrame f = new JFrame("Swing Paint Demo");
         MyPanel myPanel = new MyPanel();
-        numbers.addActionListener(new ActionListener() {
-
+        letters.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                String[] parm = smallField.getText().replaceAll(" ",
-                        "").split(",");
+                String[] parm = smallField.getText().replaceAll(" ", "").split(",");
                 if (parm.length != parm.length){
                     //Отображение введенного текста
                     JOptionPane.showMessageDialog(null,
@@ -26,7 +28,7 @@ public class Main {
                 myPanel.setWidth(koords[2]);
                 myPanel.setHeight(koords[3]);
                 myPanel.setStep(koords[4]);
-                myPanel.setSymbols(numbers.getText());
+                myPanel.setSymbols(letters.getText());
                 myPanel.repaint();
                 f.add(myPanel);
                 f.pack();
@@ -39,8 +41,9 @@ public class Main {
         JPanel contents = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
         //Создание панели с текстовыми полями
-        contents.add(numbers);
+        contents.add(letters);
         contents.add(smallField);
+        contents.setPreferredSize(new Dimension(1560, 700));
         f.setContentPane(contents);
 
 
@@ -55,7 +58,7 @@ public class Main {
             return Integer.parseInt(parm);
         }
         catch (Exception e){
-            new Exception("Это не цифра");
+            new Exception("Такой буквы нет");
         }
         return 0;
     }

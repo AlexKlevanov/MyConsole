@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class MyPanel extends JPanel{
     public MyPanel() {
         setBorder(BorderFactory.createLineBorder(Color.black));
+        setPreferredSize(new Dimension(1560, 700));
     }
 
     public  Dimension getPreferredSize() {
@@ -14,33 +15,67 @@ public class MyPanel extends JPanel{
     private int width = 50;
     private  int height = 100;
     private int step = 30;
-    private  int delta = 5;
-    //private String[] numbers = null;
-    // private int otstup = 1;
-
-    private ArrayList<Rectangle> outlist = new ArrayList<Rectangle>();
+    private  int delta = 3;
+     private ArrayList<Rectangle> outlist = new ArrayList<Rectangle>();
 
     public void setSymbols(String parm){
         String[] arr = parm.replace(",", "").split(" ");
+        outlist.clear();
         for (String cifra: arr){
             switch (cifra){
-                case "1":
-                    segment(2);
-                    segment(4);
-                    break;
-                case "2":
+                case "F":
                     segment(1);
-                    segment(2);
                     segment(3);
                     segment(6);
-                    segment(5);
+                    segment(7);
                     break;
-                case "3":
-                    segment(1);
-                    segment(2);
+                case "f":
                     segment(3);
+                    segment(8);
+                    segment(9);
+                    break;
+                case "E":
+                    segment(1);
+                    segment(3);
+                    segment(5);
+                    segment(6);
+                    segment(7);
+                    break;
+                case "e":
+                    segment(6);
+                    segment(10);
+                    segment(11);
+                    segment(12);
+                    segment(13);
+                    break;
+                case "T":
+                    segment(1);
+                    segment(14);
+                    break;
+                case "t":
+                    segment(3);
+                    segment(8);
+                    segment(15);
+                    break;
+                case "I":
+                    segment(1);
+                    segment(5);
+                    segment(14);
+                    break;
+                case "i":
+                    segment(16);
+                    segment(17);
+                    break;
+                case "J":
+                    segment(2);
                     segment(4);
                     segment(5);
+                    segment(6);
+                    break;
+                case "j":
+                    segment(12);
+                    segment(16);
+                    segment(17);
                     break;
             }
             x = x + step + width;
@@ -63,6 +98,34 @@ public class MyPanel extends JPanel{
                 break;
             case 7: outlist.add(new Rectangle(x, y + delta, x, y + (height / 2) - delta));
                 break;
+            case 8: outlist.add(new Rectangle(x + (width / 2) + delta - 3, y + (height / 2) - (height / 4), x + (width / 2) + delta - 3, y + height));
+                break;
+            case 9: outlist.add(new Rectangle(x + (width / 2) + delta - 3, y + (height / 2) - (height / 4), x + width + delta - 3, y + (height / 2) - (height / 4)));
+                break;
+            case 10:
+                outlist.add(new Rectangle(x, y + (height / 2) + (height / 4) ,x + (width / 2) - delta + 3, y + (height / 2) + (height / 4)));
+                break;
+            case 11:
+                outlist.add(new Rectangle(x + (width / 2) + delta, y + (height / 2), x + (width / 2) + delta, y + (height / 2) + (height / 4)));
+                break;
+            case 12:
+                outlist.add(new Rectangle(x + 1, y + height,x + (width / 2) - delta + 3, y + height));
+                break;
+            case 13:
+                outlist.add(new Rectangle(x + (width / 2) + delta - 2, y + (height / 2), x + delta, y + (height / 2)));
+                break;
+            case 14:
+                outlist.add(new Rectangle(x + (width / 2) + delta - 3, y, x + (width / 2) + delta - 3, y + height));
+                break;
+            case 15:
+                outlist.add(new Rectangle(x + (width / 2) + delta - 3, y + height, x + width + delta - 3, y + height));
+                break;
+            case 16:
+                outlist.add(new Rectangle(x + (width / 2) + delta - 3, y + (height / 2), x + (width / 2) + delta - 3, y + height));
+                break;
+            case 17:
+                outlist.add(new Rectangle(x + (width / 2) + delta - 4, y + (height / 2) - (height / 4), x + (width / 2) + delta - 2, y + (height / 2) - (height / 4)));
+                break;
         }
     }
     public void paintComponent(Graphics g) {
@@ -78,11 +141,14 @@ public class MyPanel extends JPanel{
     }
     public void setY(int y){
         this.y = y;
-    }    public void setWidth(int width){
+    }
+    public void setWidth(int width){
         this.width = width;
-    }    public void setHeight(int height){
+    }
+    public void setHeight(int height){
         this.height = height;
-    }    public void setStep(int step){
+    }
+    public void setStep(int step){
         this.step = step;
     }
 }
